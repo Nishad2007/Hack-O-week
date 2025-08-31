@@ -1,0 +1,275 @@
+@ -0,0 +1,274 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Your Orders - Amazon.in</title>
+    <style>
+        /* General Body Styles */
+        body {
+            font-family: 'Amazon Ember', Arial, sans-serif;
+            margin: 0;
+            background-color: #EAEDED;
+            font-size: 14px;
+        }
+
+        a {
+            text-decoration: none;
+            color: #007185;
+        }
+
+        a:hover {
+            color: #C7511F;
+            text-decoration: underline;
+        }
+
+        /* Header Styles */
+        header {
+            background-color: #131A22;
+            padding: 8px 15px;
+            display: flex;
+            align-items: center;
+            color: white;
+        }
+        .logo {
+            padding: 5px;
+            border: 1px solid transparent;
+        }
+        .logo:hover {
+            border: 1px solid white;
+        }
+        .search-container {
+            display: flex;
+            flex-grow: 1;
+            margin: 0 20px;
+        }
+        .search-container input {
+            width: 100%;
+            padding: 10px;
+            border: none;
+            border-radius: 4px 0 0 4px;
+        }
+        .search-container button {
+            background-color: #FEBD69;
+            border: none;
+            padding: 0 15px;
+            cursor: pointer;
+            border-radius: 0 4px 4px 0;
+        }
+        .header-nav a {
+            color: white;
+            padding: 8px;
+            margin: 0 2px;
+            border: 1px solid transparent;
+        }
+        .header-nav a:hover {
+            border: 1px solid white;
+            text-decoration: none;
+        }
+
+        /* Sub-navigation bar */
+        .sub-nav {
+            background-color: #232F3E;
+            padding: 5px 15px;
+        }
+        .sub-nav a {
+            color: white;
+            padding: 5px 10px;
+            font-size: 14px;
+        }
+
+        /* Main Content Styles */
+        .main-container {
+            max-width: 1500px;
+            margin: 20px auto;
+            padding: 0 20px;
+        }
+
+        .orders-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+        .orders-header h1 {
+            font-size: 28px;
+            font-weight: 400;
+        }
+        .order-search-container {
+            display: flex;
+        }
+        .order-search-container input {
+            padding: 8px;
+            width: 250px;
+            border: 1px solid #DDD;
+            border-radius: 4px;
+        }
+        .order-search-container button {
+            padding: 8px 15px;
+            margin-left: 10px;
+            background-color: #F0F2F2;
+            border: 1px solid #ADB1B8;
+            border-radius: 8px;
+            cursor: pointer;
+        }
+
+        .orders-content {
+            background-color: white;
+            border: 1px solid #DDD;
+            border-radius: 8px;
+            padding: 20px;
+            text-align: center;
+        }
+        .order-tabs a {
+            display: inline-block;
+            padding: 10px 15px;
+            border-bottom: 2px solid transparent;
+            color: #555;
+        }
+        .order-tabs a.active {
+            border-bottom: 2px solid #C7511F;
+            color: #0F1111;
+            font-weight: bold;
+        }
+        .no-orders-message {
+            margin-top: 30px;
+            color: #555;
+        }
+
+        /* Product Carousel Styles */
+        .recommendations-section {
+            background-color: white;
+            padding: 20px;
+            margin-top: 20px;
+            border: 1px solid #DDD;
+        }
+        .recommendations-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: baseline;
+            margin-bottom: 10px;
+        }
+        .recommendations-header h2 {
+            margin: 0;
+            font-size: 21px;
+            font-weight: bold;
+        }
+        .carousel-container {
+            display: flex;
+            overflow-x: auto;
+            gap: 20px;
+            padding-bottom: 15px;
+             /* Hide scrollbar for clean look */
+            scrollbar-width: none; /* Firefox */
+            -ms-overflow-style: none;  /* IE and Edge */
+        }
+        .carousel-container::-webkit-scrollbar {
+            display: none; /* Chrome, Safari, and Opera */
+        }
+
+        .product-card {
+            flex: 0 0 210px; /* Prevents shrinking, sets base width */
+            text-align: left;
+        }
+        .product-card img {
+            width: 100%;
+            height: 160px;
+            object-fit: contain;
+            margin-bottom: 10px;
+        }
+        .product-card .title {
+            font-size: 14px;
+            display: -webkit-box;
+            -webkit-line-clamp: 3;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+            height: 60px; /* Approx 3 lines */
+        }
+        .rating {
+            color: #FFA41C;
+            font-size: 16px;
+        }
+        .rating-count {
+            color: #007185;
+            margin-left: 5px;
+        }
+        .price {
+            font-size: 21px;
+            color: #0F1111;
+        }
+        .list-price {
+            color: #565959;
+            text-decoration: line-through;
+            margin-left: 5px;
+        }
+        .delivery-info {
+            font-size: 13px;
+            color: #0F1111;
+            margin-top: 5px;
+        }
+        .badge {
+            display: inline-block;
+            padding: 4px 8px;
+            font-size: 12px;
+            font-weight: bold;
+            color: white;
+            border-radius: 3px;
+            margin-bottom: 5px;
+        }
+        .best-seller {
+            background-color: #C45500;
+        }
+        .limited-deal {
+             background-color: #CC0C39;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="logo">amazon.in</div>
+        <div class="search-container">
+            <input type="text" placeholder="Search Amazon.in">
+            <button>search</button>
+        </div>
+        <nav class="header-nav">
+            <a href="signin.html">Hello, sign in</a>
+            <a href="returnsandorders.html"> Returns & Orders</a>
+            <a href="#"><b>🛒 Cart</b></a>
+        </nav>
+    </header>
+
+    <nav class="sub-nav">
+        <a href="#">All</a>
+        <a href="#">Mobiles</a>
+        <a href="#">Customer Service</a>
+        <a href="#">Gift Cards</a>
+        <a href="#">Electronics</a>
+        </nav>
+
+    <main class="main-container">
+        <div class="orders-header">
+            <h1>Your Orders</h1>
+            <div class="order-search-container">
+                <input type="text" placeholder="Search all orders">
+                <button>Search Orders</button>
+            </div>
+        </div>
+        
+        <div class="order-tabs">
+            <a href="#" class="active">Orders</a>
+            <a href="#">Buy Again</a>
+            <a href="#">Not Yet Shipped</a>
+            <a href="#">Cancelled Orders</a>
+        </div>
+        
+        <div class="orders-content">
+            <p>0 orders placed in <a href="#">past 3 months</a></p>
+            <p class="no-orders-message">Looks like you haven't placed an order in the last 3 months. <a href="#">View orders in 2025</a></p>
+        </div>
+
+    </main>
+
+</body>
+</html>
